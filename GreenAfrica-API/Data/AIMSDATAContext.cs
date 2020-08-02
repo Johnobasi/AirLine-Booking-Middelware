@@ -17,8 +17,8 @@ namespace GreenAfrica_API.Data
 
         public virtual DbSet<Cpayroll> Cpayroll { get; set; }
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
-        //public virtual DbSet<CrewPayroll> CrewPayroll { get; set; }
-        //public virtual DbSet<CustomerDetailsResponses> CustomerDetailsResponses { get; set; }
+        public virtual DbSet<CrewPayroll> CrewPayroll { get; set; }
+        public virtual DbSet<CustomerDetailsResponses> CustomerDetailsResponses { get; set; }
         public virtual DbSet<FlightInfo> FlightInfo { get; set; }
         //public virtual DbSet<FlightInfoFstp> FlightInfoFstp { get; set; }
         //public virtual DbSet<PushFacilityResponses> PushFacilityResponses { get; set; }
