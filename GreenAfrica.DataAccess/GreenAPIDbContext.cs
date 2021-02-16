@@ -12,7 +12,7 @@ namespace GreenAfrica.DataAccess
         }
 
         public virtual DbSet<CPayroll> Cpayroll { get; set; }
-        public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Booking> Books { get; set; }
 
     }
 }

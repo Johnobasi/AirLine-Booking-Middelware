@@ -43,7 +43,7 @@ namespace GreenAfrica_API
                     .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<AIMSDATAContext>();
             services.AddScoped<IIdentityService, IdentityService>();
-            services.AddScoped<IBook, BookService>();
+            services.AddScoped<IBooking, BookingService>();
 
 
             services.AddControllers();

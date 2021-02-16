@@ -1,6 +1,6 @@
 ﻿namespace GreenAfrica.DataAccess.Models
 {
-    public class Book
+    public class Booking
     {
         public int Id { get; set; }
         public int BookNumbers { get; set; }
