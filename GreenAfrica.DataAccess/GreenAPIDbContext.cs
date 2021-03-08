@@ -14,6 +14,7 @@ namespace GreenAfrica.DataAccess
         public virtual DbSet<CPayroll> Cpayroll { get; set; }
         public virtual DbSet<Booking> Books { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
+        public virtual DbSet<Pilot> Pilots { get; set; }
 
     }
 }
