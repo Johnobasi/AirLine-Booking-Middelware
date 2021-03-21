@@ -44,6 +44,8 @@ namespace GreenAfrica_API
                     .AddEntityFrameworkStores<AIMSDATAContext>();
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IBooking, BookingService>();
+            services.AddScoped<IPassengers, PassengerService>();
+            services.AddScoped<ITickets, TicketService>();
 
 
             services.AddControllers();
