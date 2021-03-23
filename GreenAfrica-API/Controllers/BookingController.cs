@@ -16,8 +16,8 @@ namespace GreenAfrica_API.Controllers
 
         public IActionResult GetAllBookings()
         {
-            var allBokings = _bookRepository.GetAll;
-            return Ok(allBokings);
+            //var allBokings = _bookRepository.GetAll;
+            return Ok();
         }
     }
 }

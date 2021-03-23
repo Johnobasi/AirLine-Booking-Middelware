@@ -22,8 +22,7 @@ namespace GreenAfrica_API.Controllers
 
         public IActionResult GetAll()
         {
-            var allTickets = _ticketsRepo.GetAllTickets();
-            return allTickets.ToList();
+            return Ok();
         }
     }
 }
