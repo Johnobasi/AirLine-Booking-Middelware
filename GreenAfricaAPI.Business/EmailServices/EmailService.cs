@@ -1,6 +1,19 @@
-﻿using System;
+﻿using GreenAfricaAPI.Business.Abstract.EmailSending;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GreenAfricaAPI.Business.EmailServices
 {
@@ -60,7 +73,7 @@ namespace GreenAfricaAPI.Business.EmailServices
                 };
                 recipients.Add(recipient);
             }
-            List<Attachment> attachments1 = new List<Attachment>();
+            List<System.Net.Mail.Attachment> attachments1 = new List<Attachment>();
             ////attachments1.Add(GetAttachment(filePath, "stallion.jpg", "stallion"));
             //attachments1.Add(GetAttachment(filePath, "YT.jpg", "youtube"));
             //attachments1.Add(GetAttachment(filePath, "twitter.jpg", "twitter"));
@@ -215,11 +228,11 @@ namespace GreenAfricaAPI.Business.EmailServices
             }
         }
 
-        private Attachment GetAttachment(string filePath, string fileName, string cid)
+        private System.Net.Mail.Attachment GetAttachment(string filePath, string fileName, string cid)
         {
             byte[] imageArray = File.ReadAllBytes(filePath + fileName);
             FileInfo fileInfo = new FileInfo(filePath + fileName);
-            Attachment attachment = new Attachment
+            System.Net.Mail.Attachment attachment = new Attachment
             {
                 cid = cid,
                 content = Convert.ToBase64String(imageArray),
