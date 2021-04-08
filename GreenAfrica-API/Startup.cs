@@ -48,6 +48,7 @@ namespace GreenAfrica_API
             services.AddScoped<IPilot, PilotService>();
             services.AddScoped<IBooking, BookingService>();
             services.AddScoped<ITickets, TicketService>();
+            services.AddScoped<IFleet, FleetService>();
 
 
             services.AddControllers();
