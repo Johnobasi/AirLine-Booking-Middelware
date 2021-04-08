@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Policy;
 using System.Text;
+using GreenAfrica.DataAccess.Models;
 using GreenAfrica_API.Data;
 using GreenAfrica_API.Options;
 using GreenAfrica_API.Repo;
@@ -43,8 +44,9 @@ namespace GreenAfrica_API
                     .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<AIMSDATAContext>();
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IDepartment, DepartmentService>();
+            services.AddScoped<IPilot, PilotService>();
             services.AddScoped<IBooking, BookingService>();
-            services.AddScoped<IPassengers, PassengerService>();
             services.AddScoped<ITickets, TicketService>();
 
 
