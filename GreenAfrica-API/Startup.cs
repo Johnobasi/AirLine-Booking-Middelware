@@ -5,6 +5,8 @@ using System.Text;
 using GreenAfrica_API.Data;
 using GreenAfrica_API.Options;
 using GreenAfrica_API.Repo;
+using GreenAfricaAPI.Business;
+using GreenAfricaAPI.Business.Abstract;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,9 +43,10 @@ namespace GreenAfrica_API
                     .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<AIMSDATAContext>();
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IBook, BookService>();
 
 
-            services.AddControllers();        
+            services.AddControllers();
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
@@ -66,7 +69,7 @@ namespace GreenAfrica_API
                     x.TokenValidationParameters = tokenValidationParameters;
                 });
 
-           
+
 
             services.AddSwaggerGen(options=>
             {
@@ -80,7 +83,7 @@ namespace GreenAfrica_API
                         Name = "Morafa Seun",
                         Email = "seun.Morafa@greenafrica.com"
                     }
-                    
+
                 });
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -91,8 +94,8 @@ namespace GreenAfrica_API
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     Description = "JWT authorization header using bearer token"
-                  
-                   
+
+
                 });
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -118,7 +121,7 @@ namespace GreenAfrica_API
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
-          
+
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "PlaceInfo Services"));
 
