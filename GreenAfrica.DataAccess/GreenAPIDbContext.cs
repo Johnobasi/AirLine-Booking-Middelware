@@ -1,7 +1,6 @@
 ﻿using GreenAfrica.DataAccess.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace GreenAfrica.DataAccess
 {
@@ -13,6 +12,7 @@ namespace GreenAfrica.DataAccess
         }
 
         public virtual DbSet<CPayroll> Cpayroll { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
 
     }
 }
