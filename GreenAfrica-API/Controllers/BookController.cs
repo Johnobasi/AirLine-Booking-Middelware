@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GreenAfrica.DataAccess.Models;
+using GreenAfricaAPI.Business.Abstract;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,13 @@ namespace GreenAfrica_API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
+        private readonly IBook _bookRepository;
+
+        public BookController(IBook bookRepository)
+        {
+            _bookRepository = bookRepository;
+        }
+
 
     }
 }
