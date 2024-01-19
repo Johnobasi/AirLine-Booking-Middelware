@@ -16,9 +16,10 @@ namespace GreenAfricaAPI.Business
             _ticketBookingRepository = ticketBookingRepository;
         }
 
-        public Task AddTicketBookingAsync(TicketBooking ticketBooking)
+        public async Task AddTicketBookingAsync(TicketBooking ticketBooking)
         {
-            return _ticketBookingRepository.AddAsync(ticketBooking);
+            await _ticketBookingRepository.AddAsync(ticketBooking);
+            await _ticketBookingRepository.SaveChangesAsync();
         }
 
         public Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId)

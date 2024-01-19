@@ -1,7 +1,9 @@
 ﻿using GreenAfrica.DataAccess.Models;
 using GreenAfrica_API.Dtos;
 using GreenAfricaAPI.Business.Abstract;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace GreenAfrica_API.Controllers
 {
@@ -24,28 +26,36 @@ namespace GreenAfrica_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTicketBookings(TicketBookingDto request)
+        public async Task<IActionResult> AddTicketBookings(TicketBookingDto request)
         {
-            var result = _iTicketBookingService.AddTicketBookingAsync
-                (
-                     new TicketBooking
-                     {
-                         ArrivalDate = request.ArrivalDate,
-                         Departure = request.Departure,
-                         DepartureDate = request.DepartureDate,
-                         Destination = request.Destination,
-                         FirstName = request.FirstName,
-                         EmailAddress = request.EmailAddress,
-                         Dob = request.Dob,
-                         EmergencyPhoneNumber = request.EmergencyPhoneNumber,
-                         Gender = request.Gender,
-                         LastName = request.LastName,
-                         Passport = request.Passport,
-                         PhoneNumber = request.PhoneNumber,
-                         TicketStatus = request.TicketStatus,
-                         IsInternational = request.IsInternational
-                     }
-                );
+            await _iTicketBookingService.AddTicketBookingAsync
+                 (
+                      new TicketBooking
+                      {
+                          ArrivalDate = request.ArrivalDate,
+                          Departure = request.Departure,
+                          DepartureDate = request.DepartureDate,
+                          Destination = request.Destination,
+                          FirstName = request.FirstName,
+                          EmailAddress = request.EmailAddress,
+                          Dob = request.Dob,
+                          EmergencyPhoneNumber = request.EmergencyPhoneNumber,
+                          Gender = request.Gender,
+                          LastName = request.LastName,
+                          Passport = request.Passport,
+                          PhoneNumber = request.PhoneNumber,
+                          TicketStatus = request.TicketStatus,
+                          IsInternational = request.IsInternational
+                      }
+                 );
+
+            return Created(this.Request.GetDisplayUrl(), null);
+        }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetTicketBookings(int Id)
+        {
+            var result = await _iTicketBookingService.GetTicketBookingAsyncById(Id);
             return Ok(result);
         }
     }
