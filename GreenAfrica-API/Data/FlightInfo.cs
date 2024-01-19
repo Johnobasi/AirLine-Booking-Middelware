@@ -8,6 +8,7 @@ namespace GreenAfrica_API.Data
     {
         [Key]
         public int FlightId { get; set; }
+
         public string Operation { get; set; }
         public DateTime? ScheduledDepartureDate { get; set; }
         public string Carrier { get; set; }
@@ -32,5 +33,6 @@ namespace GreenAfrica_API.Data
         public string Cargo { get; set; }
         public string DestinationAlternative { get; set; }
         public string CrewNumber { get; set; }
+        public ICollection<TicketBooking> TicketBookings { get; set; }
     }
 }
