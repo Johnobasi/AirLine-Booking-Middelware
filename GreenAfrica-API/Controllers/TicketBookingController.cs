@@ -58,5 +58,10 @@ namespace GreenAfrica_API.Controllers
             var result = await _iTicketBookingService.GetTicketBookingAsyncById(Id);
             return Ok(result);
         }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateTicketBookings([FromRoute] int Id, [FromBody] TicketBookingDto request)
+        {
+        }
     }
 }

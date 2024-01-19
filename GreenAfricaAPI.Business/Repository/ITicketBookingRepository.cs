@@ -14,6 +14,8 @@ namespace GreenAfricaAPI.Business.Repository
 
         Task<IQueryable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate);
 
+        Task UpdateAsync(TicketBooking ticketBooking);
+
         Task<bool> SaveChangesAsync();
     }
 
@@ -31,9 +33,9 @@ namespace GreenAfricaAPI.Business.Repository
             await _context.AddAsync(ticketBooking);
         }
 
-        public Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId)
+        public async Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId)
         {
-            throw new NotImplementedException();
+            return await _context.TicketBookings.FindAsync(ticketBookingId);
         }
 
         public async Task<IQueryable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate)
@@ -44,6 +46,11 @@ namespace GreenAfricaAPI.Business.Repository
         public async Task<bool> SaveChangesAsync()
         {
             return _context.SaveChanges() > 0;
+        }
+
+        public async Task UpdateAsync(TicketBooking ticketBooking)
+        {
+            _context.Update(ticketBooking);
         }
     }
 }
