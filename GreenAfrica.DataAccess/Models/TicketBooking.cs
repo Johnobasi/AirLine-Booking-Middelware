@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GreenAfrica_API.Data
+namespace GreenAfrica.DataAccess.Models
 {
     public class TicketBooking
     {

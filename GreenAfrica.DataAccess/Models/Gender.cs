@@ -1,4 +1,4 @@
-﻿namespace GreenAfrica_API.Data
+﻿namespace GreenAfrica.DataAccess.Models
 {
     public enum Gender
     {

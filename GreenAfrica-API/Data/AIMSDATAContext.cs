@@ -1,8 +1,7 @@
-﻿using System;
+﻿using GreenAfrica.DataAccess.Models;
 using GreenAfrica_API.IdentityData;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GreenAfrica_API.Data
 {

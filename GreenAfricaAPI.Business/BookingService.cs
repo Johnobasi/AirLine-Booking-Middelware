@@ -2,7 +2,6 @@
 using GreenAfrica.DataAccess.Models;
 using GreenAfricaAPI.Business.Abstract;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GreenAfricaAPI.Business
