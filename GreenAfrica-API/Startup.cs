@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Policy;
 using System.Text;
-using GreenAfrica.DataAccess.Models;
 using GreenAfrica_API.Data;
 using GreenAfrica_API.Options;
 using GreenAfrica_API.Repo;
@@ -15,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -33,13 +29,13 @@ namespace GreenAfrica_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             var jwtSettings = new JwtSettings();
             Configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
 
-             services.AddDbContext<AIMSDATAContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataDBCon")));
+            services.AddDbContext<AIMSDATAContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataDBCon")));
             services.AddScoped<ICpayroll, CpayrollService>();
+            services.AddScoped<ITicketBookingRepository, TicketBookingRepository>();
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<AIMSDATAContext>();
@@ -49,7 +45,6 @@ namespace GreenAfrica_API
             services.AddScoped<IBooking, BookingService>();
             services.AddScoped<ITickets, TicketService>();
             services.AddScoped<IFleet, FleetService>();
-
 
             services.AddControllers();
             var tokenValidationParameters = new TokenValidationParameters
@@ -74,9 +69,7 @@ namespace GreenAfrica_API
                     x.TokenValidationParameters = tokenValidationParameters;
                 });
 
-
-
-            services.AddSwaggerGen(options=>
+            services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
@@ -88,7 +81,6 @@ namespace GreenAfrica_API
                         Name = "Morafa Seun",
                         Email = "seun.Morafa@greenafrica.com"
                     }
-
                 });
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -99,8 +91,6 @@ namespace GreenAfrica_API
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     Description = "JWT authorization header using bearer token"
-
-
                 });
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -132,7 +122,7 @@ namespace GreenAfrica_API
 
             app.UseEndpoints(endpoints =>
             {
-               endpoints.MapControllers();
+                endpoints.MapControllers();
             });
         }
     }
