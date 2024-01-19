@@ -22,6 +22,11 @@ namespace GreenAfricaAPI.Business
             await _ticketBookingRepository.SaveChangesAsync();
         }
 
+        public Task DeleteTicketBookingAsync(TicketBooking request)
+        {
+            _ticketBookingRepository.DeleteTicketBookingAsync(request);
+        }
+
         public Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId)
         {
             return GetTicketBookingAsyncById(ticketBookingId);
@@ -32,25 +37,9 @@ namespace GreenAfricaAPI.Business
             return GetTicketBookingsAsync(predicate);
         }
 
-        public async Task UpdateTicketBookingAsync(int id, TicketBooking request)
+        public async Task UpdateTicketBookingAsync(TicketBooking ticketBooking)
         {
-            var existingTicketBooking = await _ticketBookingRepository.GetTicketBookingAsyncById(id);
-
-            existingTicketBooking.ArrivalDate = request.ArrivalDate ?? existingTicketBooking.ArrivalDate;
-            existingTicketBooking.Departure = request.Departure ?? existingTicketBooking.Departure;
-            existingTicketBooking.DepartureDate = request.DepartureDate ?? existingTicketBooking.DepartureDate;
-            existingTicketBooking.Destination = request.Destination ?? existingTicketBooking.Destination;
-            existingTicketBooking.FirstName = request.FirstName ?? existingTicketBooking.FirstName;
-            existingTicketBooking.EmailAddress = request.EmailAddress ?? existingTicketBooking.EmailAddress;
-            existingTicketBooking.Dob = request.Dob ?? existingTicketBooking.Dob;
-            existingTicketBooking.EmergencyPhoneNumber = request.EmergencyPhoneNumber ?? existingTicketBooking.EmergencyPhoneNumber;
-            existingTicketBooking.Gender = request.Gender ?? request.Gender;
-            existingTicketBooking.LastName = request.LastName ?? existingTicketBooking.LastName;
-            existingTicketBooking.Passport = request.Passport ?? existingTicketBooking.Passport;
-            existingTicketBooking.PhoneNumber = request.PhoneNumber ?? existingTicketBooking.PhoneNumber;
-            existingTicketBooking.TicketStatus = request.TicketStatus ?? existingTicketBooking.TicketStatus;
-            existingTicketBooking.IsInternational = request.IsInternational ?? existingTicketBooking.IsInternational;
-            await _ticketBookingRepository.UpdateAsync(existingTicketBooking);
+            await _ticketBookingRepository.UpdateAsync(ticketBooking);
             await _ticketBookingRepository.SaveChangesAsync();
         }
     }

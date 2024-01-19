@@ -13,6 +13,8 @@ namespace GreenAfricaAPI.Business.Abstract
 
         Task<IEnumerable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate);
 
-        Task UpdateTicketBookingAsync(int id, TicketBooking request);
+        Task UpdateTicketBookingAsync(TicketBooking request);
+
+        Task DeleteTicketBookingAsync(TicketBooking request);
     }
 }

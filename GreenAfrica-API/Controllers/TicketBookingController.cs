@@ -62,6 +62,32 @@ namespace GreenAfrica_API.Controllers
         [HttpPut("{Id}")]
         public async Task<IActionResult> UpdateTicketBookings([FromRoute] int Id, [FromBody] TicketBookingDto request)
         {
+            var existingTicketBooking = await _iTicketBookingService.GetTicketBookingAsyncById(Id);
+
+            existingTicketBooking.ArrivalDate = request.ArrivalDate ?? existingTicketBooking.ArrivalDate;
+            existingTicketBooking.Departure = request.Departure ?? existingTicketBooking.Departure;
+            existingTicketBooking.DepartureDate = request.DepartureDate ?? existingTicketBooking.DepartureDate;
+            existingTicketBooking.Destination = request.Destination ?? existingTicketBooking.Destination;
+            existingTicketBooking.FirstName = request.FirstName ?? existingTicketBooking.FirstName;
+            existingTicketBooking.EmailAddress = request.EmailAddress ?? existingTicketBooking.EmailAddress;
+            existingTicketBooking.Dob = request.Dob ?? existingTicketBooking.Dob;
+            existingTicketBooking.EmergencyPhoneNumber = request.EmergencyPhoneNumber ?? existingTicketBooking.EmergencyPhoneNumber;
+            existingTicketBooking.Gender = request.Gender ?? request.Gender;
+            existingTicketBooking.LastName = request.LastName ?? existingTicketBooking.LastName;
+            existingTicketBooking.Passport = request.Passport ?? existingTicketBooking.Passport;
+            existingTicketBooking.PhoneNumber = request.PhoneNumber ?? existingTicketBooking.PhoneNumber;
+            existingTicketBooking.TicketStatus = request.TicketStatus ?? existingTicketBooking.TicketStatus;
+            existingTicketBooking.IsInternational = request.IsInternational ?? existingTicketBooking.IsInternational;
+            await _iTicketBookingService.UpdateTicketBookingAsync(existingTicketBooking);
+            return NoContent();
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> UpdateTicketBookings([FromRoute] int Id)
+        {
+            var existingTicketBooking = await _iTicketBookingService.GetTicketBookingAsyncById(Id);
+            await _iTicketBookingService.DeleteTicketBookingAsync(existingTicketBooking);
+            return NoContent();
         }
     }
 }

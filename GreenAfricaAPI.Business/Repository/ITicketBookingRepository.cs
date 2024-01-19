@@ -16,6 +16,8 @@ namespace GreenAfricaAPI.Business.Repository
 
         Task UpdateAsync(TicketBooking ticketBooking);
 
+        Task DeleteTicketBookingAsync(TicketBooking ticketBooking);
+
         Task<bool> SaveChangesAsync();
     }
 
@@ -31,6 +33,11 @@ namespace GreenAfricaAPI.Business.Repository
         public async Task AddAsync(TicketBooking ticketBooking)
         {
             await _context.AddAsync(ticketBooking);
+        }
+
+        public async Task DeleteTicketBookingAsync(TicketBooking ticketBooking)
+        {
+            _context.Remove(ticketBooking);
         }
 
         public async Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId)
