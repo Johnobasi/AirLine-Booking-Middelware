@@ -7,12 +7,10 @@ namespace GreenAfricaAPI.Business.Abstract
 {
     public interface ITicketBookingService
     {
-        Task AddAsync(TicketBooking ticketBooking);
+        Task AddTicketBookingAsync(TicketBooking ticketBooking);
 
         Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId);
 
         Task<IEnumerable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate);
-
-        Task<bool> SaveChangesAsync();
     }
 }

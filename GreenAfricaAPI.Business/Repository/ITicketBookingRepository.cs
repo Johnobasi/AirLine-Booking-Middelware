@@ -1,12 +1,10 @@
-﻿using GreenAfrica_API.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using GreenAfrica.DataAccess.Models;
 using GreenAfrica.DataAccess;
 
-namespace GreenAfrica_API.Repo
+namespace GreenAfricaAPI.Business.Repository
 {
     public interface ITicketBookingRepository
     {
@@ -14,7 +12,7 @@ namespace GreenAfrica_API.Repo
 
         Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId);
 
-        Task<IEnumerable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate);
+        Task<IQueryable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate);
 
         Task<bool> SaveChangesAsync();
     }
@@ -38,9 +36,9 @@ namespace GreenAfrica_API.Repo
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate)
+        public async Task<IQueryable<TicketBooking>> GetTicketBookingsAsync(Func<TicketBooking, bool> predicate)
         {
-            return _context.TicketBookings.Where(predicate).ToList();
+            return _context.TicketBookings.Where(predicate).AsQueryable();
         }
 
         public async Task<bool> SaveChangesAsync()
