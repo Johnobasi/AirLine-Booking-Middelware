@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GreenAfrica.DataAccess.Models;
+using GreenAfrica.DataAccess;
 
 namespace GreenAfrica_API.Repo
 {
@@ -20,9 +21,9 @@ namespace GreenAfrica_API.Repo
 
     public class TicketBookingRepository : ITicketBookingRepository
     {
-        private readonly AIMSDATAContext _context;
+        private readonly GreenAPIDbContext _context;
 
-        public TicketBookingRepository(AIMSDATAContext context)
+        public TicketBookingRepository(GreenAPIDbContext context)
         {
             _context = context;
         }
@@ -42,9 +43,9 @@ namespace GreenAfrica_API.Repo
             return _context.TicketBookings.Where(predicate).ToList();
         }
 
-        public Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges() > 0;
         }
     }
 }
