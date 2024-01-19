@@ -17,22 +17,5 @@ namespace GreenAfrica_API.Data
         public virtual DbSet<CrewPayroll> CrewPayroll { get; set; }
         public virtual DbSet<CustomerDetailsResponses> CustomerDetailsResponses { get; set; }
         public virtual DbSet<FlightInfo> FlightInfo { get; set; }
-        public virtual DbSet<TicketBooking> TicketBookings { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder
-                .Entity<TicketBooking>()
-                .HasKey(e => e.Id);
-
-            builder
-            .Entity<TicketBooking>()
-            .HasOne<FlightInfo>()
-            .WithMany(e => e.TicketBookings)
-            .HasForeignKey(e => e.FlightId)
-            .HasConstraintName("FK_TicketBookingFlightId_FlightInfoFlightId");
-        }
     }
 }

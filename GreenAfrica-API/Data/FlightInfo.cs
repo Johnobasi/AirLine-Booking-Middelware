@@ -34,6 +34,5 @@ namespace GreenAfrica_API.Data
         public string Cargo { get; set; }
         public string DestinationAlternative { get; set; }
         public string CrewNumber { get; set; }
-        public ICollection<TicketBooking> TicketBookings { get; set; }
     }
 }
