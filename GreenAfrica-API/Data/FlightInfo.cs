@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GreenAfrica.DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,6 +9,7 @@ namespace GreenAfrica_API.Data
     {
         [Key]
         public int FlightId { get; set; }
+
         public string Operation { get; set; }
         public DateTime? ScheduledDepartureDate { get; set; }
         public string Carrier { get; set; }
