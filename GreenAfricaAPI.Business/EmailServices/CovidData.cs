@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using Newtonsoft.Json;
 
 public class CovidData
 {
@@ -18,16 +22,15 @@ public class CovidData
         }
 
         //List<Data =JsonConvert.DeserializeObject<List<data(Reader);
-        CovidData covidData = JsonConvert.DeserializeObject<CovidData>(getresponse);
+        CovidDataModel covidData = JsonConvert.DeserializeObject<CovidDataModel>(getresponse);
         Console.WriteLine("Total discharged: "+covidData.discharged);
     }
 }
-}
 
 
 
 
-public class CovidData
+public class CovidDataModel
 {
     public string totalSamplesTested { get; set; }
     public int totalConfirmedCases { get; set; }
