@@ -1,1 +1,24 @@
-﻿
+﻿# Ignore build output directories
+bin/
+obj/
+
+# Ignore NuGet packages folder
+*.nupkg
+
+# Ignore Visual Studio user-specific files
+.vscode/
+.vs/
+*.user
+*.suo
+
+# Ignore Rider / JetBrains specific files
+.idea/
+*.sln.iml
+
+# Ignore publish output
+publish/
+
+# Ignore logs
+*.log
+*.xml
+.DS_Store
