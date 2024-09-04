@@ -22,9 +22,9 @@ namespace GreenAfricaAPI.Business
             await _ticketBookingRepository.SaveChangesAsync();
         }
 
-        public Task DeleteTicketBookingAsync(TicketBooking request)
+        public async Task DeleteTicketBookingAsync(TicketBooking request)
         {
-           return  _ticketBookingRepository.DeleteTicketBookingAsync(request);
+           await _ticketBookingRepository.DeleteTicketBookingAsync(request);
         }
 
         public Task<TicketBooking> GetTicketBookingAsyncById(int ticketBookingId)

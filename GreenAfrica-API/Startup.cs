@@ -5,6 +5,7 @@ using GreenAfrica_API.Options;
 using GreenAfrica_API.Repo;
 using GreenAfricaAPI.Business;
 using GreenAfricaAPI.Business.Abstract;
+using GreenAfricaAPI.Business.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,7 @@ namespace GreenAfrica_API
 
             services.AddDbContext<AIMSDATAContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataDBCon")));
             services.AddScoped<ICpayroll, CpayrollService>();
+            services.AddScoped< ITicketBookingRepository, TicketBookingRepository>();
             services.AddScoped<ITicketBookingService, TicketBookingService>();
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddDefaultTokenProviders()
