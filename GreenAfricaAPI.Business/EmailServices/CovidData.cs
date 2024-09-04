@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using Newtonsoft.Json;
 
 public class CovidData
 {

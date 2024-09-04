@@ -37,6 +37,7 @@ namespace GreenAfrica_API
             services.AddDbContext<AIMSDATAContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataDBCon")));
             services.AddScoped<ICpayroll, CpayrollService>();
             services.AddScoped< ITicketBookingRepository, TicketBookingRepository>();
+            services.AddScoped<ITicketBookingService, TicketBookingService>();
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<AIMSDATAContext>();
