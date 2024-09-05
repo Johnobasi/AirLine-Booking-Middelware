@@ -1,6 +1,8 @@
-﻿using GreenAfricaAPI.Business.Abstract;
+﻿using GreenAfrica_API.Dtos;
+using GreenAfricaAPI.Business.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,35 +19,33 @@ namespace GreenAfrica_API.Controllers
             _passengerRepository = passengerRepository;
         }
 
-        // GET: api/<CustomerController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> GetPassengers()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<CustomerController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetAsync(int id)
         {
-            return "value";
+            var passengers = await _passengerRepository.Get(id);
+            if (passengers == null) { return NotFound(); }
+            else { return Ok(passengers); }
         }
 
-        // POST api/<CustomerController>
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void CreatePassenger([FromBody] PassengerDTO request)
         {
         }
 
-        // PUT api/<CustomerController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void UpdatePassenger(int id, [FromBody] string value)
         {
         }
-
-        // DELETE api/<CustomerController>/5
+        
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeletePassenger(int id)
         {
         }
     }
