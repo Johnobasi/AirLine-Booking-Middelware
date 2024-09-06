@@ -11,6 +11,10 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Payments\" />
+    <Folder Include="Entity\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Entity\" />
+  </ItemGroup>
 </Project>
